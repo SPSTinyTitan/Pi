@@ -5,7 +5,7 @@ import cv2
 
 
 
-size = 10000
+size = 20000
 
 circle = edge_detect.edge_detect(size)
 
@@ -13,4 +13,5 @@ t1 = perf_counter()
 result = circle.calc_fine()
 t2 = perf_counter()
 print("Elapsed time:", t2 - t1, "s")
-edge_detect.draw(result)
+print(circle.calc_pi())
+#edge_detect.draw(result)

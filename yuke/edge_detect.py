@@ -28,6 +28,20 @@ class edge_detect:
         y = torch.pow(torch.linspace(topleft[1], bottomright[1], size+2*padding), 2)
         return ((x.reshape(-1, 1) + y) < 1).float().view(1, 1, size+2*padding, size+2*padding)
 
+    def calc_pi(self):
+        total = 0
+        self.grid = torch.abs(self.calc_fine())
+        self.grid = self.grid / self.grid.sum(3, keepdim=True)
+        ind = torch.nonzero(self.grid)
+        factor = 1./(self.size**2)
+        print(ind.size(0))
+        for i in range(ind.size(0)):
+            x = ind[i,2]
+            y = ind[i,3]
+            total += self.grid[0,0,x,y] * y
+        return total * factor * 4
+
+
     #Clean this up
     def calc_fine(self):
         self.calc_coarse()
