@@ -2,7 +2,7 @@
 Author: Mitchell T Dennis
 Date Created: February 02, 2020
 Project: Calculating Pi
-Last Updated: February 10, 2020
+Last Updated: March 3, 2020
 
 Summary: This project will determine the value of pi by comparing the ratio of the area of a square to the area of a circle.
 */
@@ -18,16 +18,21 @@ int main()
 
   time(&start);
     
-  double count = 1000000000;
+  double count = 100000000;
   double circle = 0;
-
+  double x[count];
+  double y[count];
+  
   srand(time(0));
   for (int i = 0; i < count; i++) {
-    double x = (double)rand()/RAND_MAX;
-    double y = (double)rand()/RAND_MAX;
-    if (y<=-x+1)
+    x[i] = (double)rand()/RAND_MAX;
+    y[i] = (double)rand()/RAND_MAX;
+  
+  
+  for (int i = 0; i < count; i++) {
+    if (y[i]<=-x[i]+1)
       circle++;
-    else if(x*x + y*y <= 1)
+    else if(x[i]*x[i] + y[i]*y[i] <= 1)
       circle++;
   }
   double pi = (circle)/(count)*4;
