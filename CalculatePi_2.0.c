@@ -18,22 +18,16 @@ int main()
 
   time(&start);
     
-  int count = 100000000;
+  double count = 100000000;
   double circle = 0;
-  double* x = malloc(count*sizeof(double));
-  double* y = malloc(count*sizeof(double));
-  
+
   srand(time(0));
-  
   for (int i = 0; i < count; i++) {
-    x[i] = (double)rand()/RAND_MAX;
-    y[i] = (double)rand()/RAND_MAX;
-  }
-  
-  for (int j = 0; j < count; j++) {
-    if (y[j]<=-x[j]+1)
+    double x = (double)rand()/RAND_MAX;
+    double y = (double)rand()/RAND_MAX;
+    if (y<=-x+1)
       circle++;
-    else if(x[j]*x[j] + y[j]*y[j] <= 1)
+    else if(x*x + y*y <= 1)
       circle++;
   }
   double pi = (circle)/(count)*4;
@@ -42,9 +36,6 @@ int main()
   time(&end);
   double time_taken = (end - start);
   printf("The run time is %f\n", time_taken);
-
-  free(x);
-  free(y);
   
   return 1;
 }
