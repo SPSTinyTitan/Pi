@@ -1,0 +1,47 @@
+'''
+Leo Smart
+Pi optimization/graphicsish
+'''
+import numpy
+import random
+import time
+import matplotlib.pyplot as plt
+plt.use('TkAgg')
+def main():
+    
+    
+
+    iterations = 1000000
+    
+    x = numpy.random.rand(iterations)**2
+    y = numpy.random.rand(iterations)**2
+
+    distance = x + y
+    pi = numpy.column_stack((x,y))
+    pi = pi[distance <= 1]
+    
+    print(4 * len(pi) / iterations)
+    '''
+    plt.plot(x,y)
+    plt.ylabel('yyyyyyy')
+    plt.xlabel('xxxxx')
+    plt.axis([0, 1, 0, 1])
+    plt.show()
+    
+   
+'''
+#unzips the 2d array pi into 2 seperate arrays
+    xin, yin = zip(*pi)
+        
+    fig, ax = plt.subplots(1)
+    ax.scatter(xin, yin, c='y', alpha=1.0, edgecolor=None)
+    
+    ax.set_aspect('equal')
+    
+    #something with plt.show() is causing the plot to not work in the environment im using
+    fig.show()
+    
+#process_time is apparently the newer/better way to record time
+start_time = time.process_time()
+main()
+print (time.process_time() - start_time, "seconds")
